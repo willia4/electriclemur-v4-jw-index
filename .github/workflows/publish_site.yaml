@@ -25,12 +25,13 @@ jobs:
           ssh root@v4.electriclemur.com -i ~/.ssh/id "mkdir -p /volumes/jw_index/site"
       - name: Sync Static Files
         uses: swillner/sftp-sync-action@v1.0
-          server: v4.electriclemur.com
-          user: root
+        with:
+          server: "v4.electriclemur.com"
+          user: "root"
           user_private_key: "${{ secrets.SSH_KEY }}"
           host_public_key: "${{ env.SSH_HOST_PUBLIC_KEY}}"
-          local: ./site
-          remote: /volumes/jw_index/site
+          local: "./site"
+          remote: "/volumes/jw_index/site"
           mirror_options: "--exclude-glob=.git*/ --verbose"
       
 
