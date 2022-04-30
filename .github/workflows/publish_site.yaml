@@ -10,3 +10,7 @@ jobs:
           install -m 600 -D /dev/null ~/.ssh/id
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id
           ls -l ~/.ssh
+      - name: Install SSH Known Hosts
+        run: |
+          ssh-keyscan -H v4.electriclemur.com >> ~/.ssh/known_hosts
+          cat ~/.ssh/known_hosts
