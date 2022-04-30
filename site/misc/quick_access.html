@@ -1,0 +1,334 @@
+
+<html>
+<head>
+<title>quick access</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1">
+<style type="text/css">
+
+body {
+	text-transform: lowercase;
+}
+
+.spot {
+	color: #ad0932;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+#header {
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	font-family: futura, helvetica, verdana, sans-serif;
+	font-size: 15pt;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+	border-bottom-width: 1px;
+}
+
+#header a {
+	text-decoration: none;
+	color: black;
+}
+
+#bookmarks {
+	padding-left: 15px;
+}
+
+.bookmark {
+	margin-top: 18px;
+	color: #ad0932;
+	font-family: helvetica, verdana, sans-serif;
+}
+
+.bookmark a {
+	text-decoration: none;
+	color: #ad0932;
+
+	font-size: 18pt;
+	font-family: helvetica, verdana, sans-serif;
+}
+
+.clock {
+	font-family: helvetica, verdana, sans-serif;
+}
+
+.clock.desktop {
+	/*border-style: solid;
+	border-width: 1px;*/
+	text-align: right;
+
+	position: absolute;
+	top: 3em;
+	right: 1em;
+
+	font-size: 12pt;
+	color: #777;
+}
+
+.weather {
+	
+}
+
+.mobile {
+	/* hide on desktops; the media query at the bottom will show it on phones */
+	display: none;
+}
+
+.weather.mobile div {
+	/* the weather widget is composed of divs which inserts line breaks. To put it all in a single line on 
+	   mobile, use table-cell rendering and nowrap. Padding is required to make the divs not run into each other. */
+	display: table-cell;
+	white-space: nowrap;
+
+	padding-right: 5px;
+}
+
+.weather.desktop {
+	position: fixed;
+	right: 1em;
+	bottom: 1em;
+	color: #777;
+}
+
+.weather.desktop a {
+	text-decoration: none;
+	color: #777;
+}
+
+.weather.desktop .temp_f { 
+	display: inline;
+	font-size: 38pt;
+	text-align:right;
+	margin-bottom: 0px;
+}
+
+.weather .weather-error {
+	text-align: right;
+	color: #ad0932;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 	and (min-device-width : 320px) 
+					and (max-device-width : 480px) {
+	.mobile {
+		display: block;
+	}
+
+	.desktop {
+		display: none;
+	}
+
+	.bookmark a {
+		display: block;
+		padding-top 7px;
+		padding-bottom: 7px;
+	}
+
+	.bookmark {
+		padding-top: 7px;
+		padding-bottom: 7px;
+
+		padding-left: 3px;
+		margin-bottom: 0px;
+		margin-top: 0px;
+
+		vertical-align: center;
+	}
+
+	.bookmark:nth-child(odd) {
+		/*background-color: #FAFAFA;
+		background-color: #F5F5F5;*/
+
+		border-radius: 3px;
+
+		background: #f9f9f9; /* Old browsers */
+		background: -moz-linear-gradient(top,  #f9f9f9 0%, #f5f5f5 74%, #f9f9f9 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f9f9), color-stop(74%,#f5f5f5), color-stop(100%,#f9f9f9)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #f9f9f9 0%,#f5f5f5 74%,#f9f9f9 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #f9f9f9 0%,#f5f5f5 74%,#f9f9f9 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #f9f9f9 0%,#f5f5f5 74%,#f9f9f9 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #f9f9f9 0%,#f5f5f5 74%,#f9f9f9 100%); /* W3C */
+	}
+}
+
+</style>
+</head>
+<body>
+	<div id="header">
+		<a href="http://jameswilliams.me">quick access</a>
+	</div>
+
+	<div id="bookmarks">
+		<div class="bookmark weather mobile"></div>
+	</div>
+
+	<div class="weather desktop"></div>
+
+	<div class="clock desktop"></div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+		"use strict";
+
+		var weatherWidget = $(".weather");
+
+		(function doLinks() {
+			var links = {},
+				linkTitle, linkHref,
+				bookmarkEl, titleEl, linkEl;
+			
+			//links['rss'] = 'http://jameswilliams.me/fever';
+			links['rss'] = 'https://feedbin.com';
+			//links['interesting links'] = 'https://pinboard.in/u:willia4/unread/';
+			links['interesting links'] = 'http://jameswilliams.me/unread/';
+			links['reddit'] = 'http://www.reddit.com/';
+			links['programming on reddit'] = 'http://www.reddit.com/r/programming/';
+			// links['coding on reddit'] = 'http://www.reddit.com/r/coding/';
+			// links['games on reddit'] = 'http://www.reddit.com/r/games/';
+			// links['books on reddit'] = 'http://www.reddit.com/r/books/';
+			links['politics on reddit'] = 'http://www.reddit.com/r/politics/';
+			// links['kindle on reddit'] = 'http://www.reddit.com/r/kindle/';
+		//	links['rpgs on reddit'] = 'http://www.reddit.com/r/rpg';
+		  	links['jrpgs on reddit'] = 'http://www.reddit.com/r/jrpg';
+			links['Daring Fireball'] = 'http://daringfireball.net/';
+			links['The Loop'] = 'http://www.loopinsight.com/';
+			// links['The Economist'] = 'http://www.economist.com/';
+			links['Post and Courier (e-edition)'] = 'http://charlestonpost.nc.newsmemory.com/default.php?pSetup=charlestonpost';
+			links['Washington Post'] = 'http://www.washingtonpost.com/todays_paper/updates';
+			links['The Guardian'] = 'http://www.theguardian.com/us';
+			links['Vox'] = 'http://www.vox.com/';
+			links['Quartz'] = 'http://qz.com';
+			links['digg'] = 'http://digg.com/';
+		//	links['MobileRead Forums'] = 'http://www.mobileread.com/forums/';
+			links['Hacker News'] = 'http://news.ycombinator.com/';
+			// links['Goodreads'] = 'http://www.goodreads.com/';
+			links['sdmb'] = 'http://boards.straightdope.com/sdmb/index.php';
+			links['the hive'] = 'http://forums.talkingpointsmemo.com/';
+			links['Facebook'] = 'http://www.facebook.com/home.php';
+		//	links['@willia4 on Favstar'] = 'http://favstar.fm/users/willia4/recent';
+			links['Chess'] = 'http://www.chess.com/echess/myhome.html';
+		//	links['Simplenote'] = 'https://simple-note.appspot.com/';
+
+			for(linkTitle in links) {
+				if(links.hasOwnProperty(linkTitle)) {
+					linkHref = links[linkTitle];
+					
+					bookmarkEl = $('<div class="bookmark"></div>');
+					
+					linkEl = $('<a>' + linkTitle + '</a>');
+					linkEl.attr('href', linkHref);
+
+					titleEl = $('<div class="title"></div>');
+					titleEl.append(linkEl);
+
+					bookmarkEl.append(titleEl);
+
+					$("#bookmarks").append(bookmarkEl);
+				}
+			}
+		}());
+		
+		(function initClock() {
+			var clockEl = $(".clock");
+			
+			(function tick() {
+				var now = new Date(),
+					hour = now.getHours(),
+					minutes = now.getMinutes(),
+					seconds = now.getSeconds(),
+					ampm = "a",
+					sep = ":",
+					formatted;
+
+				if(hour > 12) {
+					ampm = "p";
+					hour -= 12;
+				}
+
+				sep = (seconds % 2 === 0 ? "invisible" : "");
+				sep = '<span class="' + sep + '">:</span>';
+
+				formatted = hour + sep + minutes + ampm;
+
+				clockEl.html("<span>" + formatted + "</span>");
+
+				setTimeout(tick, 500);
+			}());
+		}());
+
+		(function doWeather(firstTime) {
+			var spinner = 'http://me.jameswilliams.s3.amazonaws.com/ajax-loader.gif';
+				
+			firstTime = firstTime || false;
+
+			if(firstTime) {
+				weatherWidget.html('<div class="weatherloading"><img src="' + spinner + '"/></div>');
+			} 
+
+			function weatherFailure() {
+				weatherWidget.html('<div class="weather-error">Could not download weather data</div>');
+			}
+
+			$.ajax({
+				url: '/widgets/weather',
+				dataType: 'json',
+				timeout: 75000,
+				error: weatherFailure,
+				success: function(weatherData) {
+					var forecastText = '',
+						tempEl,
+						forecastEl,
+						conditionsEl,
+						stationEl,
+						text;
+						
+					if(!weatherData) {
+						weatherFailure();
+						return;
+					}
+
+					//http://stackoverflow.com/questions/11591174/escaping-of-attribute-values-using-jquery-attr
+					function makeAttributeString(s) {
+						return $("<div/>").html(s).text();
+					}
+
+					forecastText += 'High: ' + weatherData.high_f + '&deg;/Low: ' + weatherData.low_f + '&deg;';
+					forecastText += '\nChance of Rain: ' + weatherData.chance_of_precipitation + '%';
+					forecastText += '\n\n' + weatherData.forecast_conditions;
+
+					
+					tempEl = $('<div></div>')
+							.addClass('temp_f')
+							.append($("<a></a>")
+								.html('' + weatherData.temp_f + '&deg;')
+								.attr('href', weatherData.forecast_url)
+								.attr("title", makeAttributeString('feels like ' + weatherData.feelslike_f + '&deg;')));
+
+
+					conditionsEl = $('<div class="conditions"></div>')
+									.append($("<a></a>")
+										.html(weatherData.conditions)
+										.attr('href', weatherData.forecast_url)
+										.attr("title", makeAttributeString(forecastText)));
+
+					stationEl = $('<div class="station"></div>')
+								.append($("<a></a>")
+									.html(weatherData.updated)
+									.attr('href', weatherData.station_url)
+									.attr('title', makeAttributeString(weatherData.station_name + ' &mdash; Data provided by ' + weatherData.provided_by)));
+
+					weatherWidget.empty();
+					weatherWidget.append(tempEl, conditionsEl, stationEl);
+				}
+			});
+		}(true));
+	});
+	</script>
+	</body>
+</html>

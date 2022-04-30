@@ -1,0 +1,467 @@
+<html>
+<head>
+<title>willia4's quick access</title>
+<link rel="icon" href="http://me.jameswilliams.s3.amazonaws.com/favicon.ico"/>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://use.typekit.com/ymt2iyx.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<style type="text/css">
+body { 
+	background-color: #F2F2F2;
+	min-width: 788px;
+	
+	background-image: linear-gradient(bottom, rgb(242,242,242) 100%, rgb(224,220,224) 0%);
+	background-image: -o-linear-gradient(bottom, rgb(242,242,242) 100%, rgb(224,220,224) 0%);
+	background-image: -moz-linear-gradient(bottom, rgb(242,242,242) 100%, rgb(224,220,224) 0%);
+	background-image: -webkit-linear-gradient(bottom, rgb(242,242,242) 100%, rgb(224,220,224) 0%);
+	background-image: -ms-linear-gradient(bottom, rgb(242,242,242) 100%, rgb(224,220,224) 0%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(1, rgb(242,242,242)),
+		color-stop(0, rgb(224,220,224))
+	);
+	
+	text-transform:lowercase;
+}
+.header { 
+	
+	font-size:48pt;
+	font-family: futura-pt-1, futura-pt-2, Futura, Calibri, Helvetica, Arial, sans-serif;
+	
+	color: #696B87;
+	position: fixed;
+	top: 1em;
+	right: 1.5em;
+	opacity: .8;
+}
+
+.weather { 
+
+font-family: myriad-pro-1,myriad-pro-2, Helvetica, Arial, sans-serif;
+	position: fixed;
+	right: 3.5em;
+	bottom: 3em;
+	
+	color: #696B87;
+	/*opacity: .4;*/
+}
+
+.weather:hover { 
+	/*opacity: 1;*/
+}
+
+.weather .logotemp { 
+	margin-bottom: -1em;
+}
+
+.weather .logo { 
+	display: inline;
+	margin-right: 10px;
+	margin-bottom: 0px;
+}
+
+.weather .logotemp { 
+	width: 100%;
+	text-align:right;
+}
+
+.weather .temp_f { 
+	display: inline;
+	font-size: 38pt;
+	text-align:right;
+	margin-bottom: 0px;
+}
+
+.weather .conditions { 
+	margin-top: 0px;
+	font-size: 20pt;
+	text-align:right;
+font-family: futura-pt-1, futura-pt-2, Futura, Calibri, Helvetica, Arial, sans-serif;
+}
+
+.weather .station { 
+	text-align: right;
+	font-size: 11pt;
+	font-style: italic;
+}
+
+.weather img { 
+	margin-right: .5em;
+	/*opacity: .7;*/
+}
+
+.weather a, #phone_weather a { 
+	color: #696B87;
+}
+
+
+#phone_weather .textwrapper, #phone_weather .logo { 
+	display: inline-block;	
+	
+	margin-right: 10px;
+	color: #696B87;
+	font-family: futura-pt-1, futura-pt-2, Futura, Calibri, Helvetica, Arial, sans-serif;
+	
+}
+#phone_weather .conditions, #phone_weather .temp_f { 
+	display: inline-block;
+	margin-right: 10px;
+	font-size: 17pt;
+}
+
+#phone_weather .station { 
+	text-align: right;
+	font-size: 8pt;
+	font-style: italic;
+}
+
+a { 
+	color: #423538;
+	text-decoration: none;
+	margin-left: .1em;
+}
+a:hover { 
+	text-decoration: underline;
+}
+
+.links, .links_phone { 
+	margin-top: 2em;
+	width: 32em;
+}
+
+.links_phone { 
+	display:none;
+}
+
+.links { 
+	display:block;
+}
+
+.link_div { 
+	margin-bottom: .7em;
+	margin-left: 2.2em;
+	padding-bottom: .3em;
+	font-size: 20pt;
+	
+	font-family: myriad-pro-1,myriad-pro-2, Helvetica, Arial, sans-serif;
+	text-transform: lowercase;
+
+} 
+
+
+
+/* Finally, readjust the layout for small screens */
+@media only screen and (max-width: 770px) and (min-width: 481px) { 
+	.header { 
+		float:none;
+		position: inherit;
+		margin-top: .1em;
+		margin-left: 0em;
+		/*
+		border-bottom-style: solid;
+		border-bottom-width: 2px;
+		border-bottom-color: black;
+		*/
+	}
+	
+	/*.weather { 
+		float:right;
+		position: fixed;
+		top: .5em;
+		right: .5em;
+		max-height: 10em;
+		
+	}*/
+	
+	.link_div { 
+		font-size: 20pt;
+		margin-bottom: .7em;
+		margin-left: 3em;
+	}
+}
+
+/*Customize the layout for iPhone-sized devices */
+@media only screen and (max-width: 480px) { 
+	.body { 
+		min-width: 480px;
+		max-width: 480px;
+		width: 480px;
+	}
+	.header { 
+		display: none;
+	}
+	
+	.weather { 
+		display: none;
+	}
+	
+	.link_div { 
+	margin-bottom: .7em;
+	font-size: 25pt;
+	border-bottom-style: solid;
+	border-bottom-color: #696B87;
+	border-bottom-width: 2px;
+	margin-left: .3em;
+	}
+		
+	a:hover { 
+		text-decoration:none;
+	}
+	
+	.links { 
+		display:none;
+	}
+	
+	.links_phone { 
+		display:block;
+		width: 480px;
+	}
+}
+
+/* There's absolutely no reason for anyone to print this page. Ever. But, just in case...*/
+@media only print { 
+	.header { 
+		font-size: 40pt;
+		float: none;
+		margin-top: .1em;
+		margin-left: 0em;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color: #B1B1B1;
+		color: #B1B1B1;
+		position: inherit;
+		opacity: 1;
+	}
+	
+	.weather { 
+		display: none;
+	}
+	
+	.links { 
+		width: inherit;
+	}
+	.link_div { 
+		border-style: none;
+		margin-bottom: 1em;
+	}
+	a { 
+		color: black;
+	}
+	a:link:before,
+	a:visited:before { 
+		content: "--- ";
+	}
+	
+	a:link:after,
+	a:visited:after { 
+		content: " (" attr(href) ") ";
+	}
+	body { 
+		background-color: white;
+	}
+}
+</style>
+<script type="text/javascript">
+(function () {
+	window.USQA = {};
+}());
+</script>
+
+<script type="text/javascript">
+(function () {
+	window.USQA.addMeebeeLinks = function () { 
+		$.ajax({
+			url: "http://meebee/",
+			type: 'GET',
+			dataType: 'html',
+			timeout: 3000,
+			cache: false,
+			success: function(response) {
+				alert("Hey, meebee!");
+			},
+			error: function(e) {
+				console.log(e);
+				alert("No, meebee: " + e);
+				//Meebee doesn't exist, not at blackbaud
+			}
+		});
+	};
+
+	$(document).ready(function () { 
+		//window.USQA.addMeebeeLinks();
+	});
+}());
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () { 
+	var links = {},
+		linksDiv = $(".links").first(),
+		linksPhone = $(".links_phone").first(),
+		weatherWidget = $(".weather").first(),
+		phoneWeatherWidget = $("#phone_weather").first(),
+		newDiv,
+		weatherAjaxSucces,
+		weatherAjaxFailure,
+		weatherImage = $(".weather .logotemp img").first(),
+		totalTicks = 0;
+		
+	//trackBrowserSize(): call this function to have the document title reflect the size of 
+	//browser window
+	function trackBrowserSize() {
+		var w = $(window),
+			f = function() { document.title = "" + w.width() };
+		
+		w.resize(f);
+		f();
+	}
+	
+	function doTick() { 
+		var percent = 0,
+			tickTime = 5,		//seconds
+			totalTime = 8 * 60; 	//seconds
+		
+		totalTicks += tickTime; 
+		
+		if(totalTicks >= totalTime)
+			percent = 100;
+		else
+			percent = Math.floor((totalTicks / totalTime) * 100);
+		
+		if(percent >= 100) { 
+			percent = 100; 
+			totalTicks = 0;
+			doWeather(false); 
+			$(".weatherlogo").css("opacity", 1);
+		} else { 
+			$(".weatherlogo").css("opacity", (100 - percent) / 100);
+			setTimeout(doTick, tickTime * 1000);
+		}
+		
+		$(".weatherlogo").attr("title", "Counting Down: " + (100 - percent));
+		
+	}
+	
+	function doWeather(firstTime) { 
+		var spinner = 'http://me.jameswilliams.s3.amazonaws.com/ajax_loader_purple.gif';
+		firstTime = firstTime || false; 
+		
+		if(firstTime) 
+			weatherWidget.html('<div class="weatherloading"><img src="' + spinner + '"></div>');
+		
+		$.ajax({
+			url: '/widgets/weather',
+			dataType: 'json',
+			data: {},
+			timeout: 75000,
+			success: weatherAjaxSuccess,
+			error: weatherAjaxFailure
+		});
+	} 
+	
+	weatherAjaxSuccess = function (weather) { 
+		var html = '',
+			forecastText = '',
+			delay = 5 * 60 * 1000; //delay in milliseconds
+
+		if(!weather) { 
+			weatherAjaxFailure();
+			return;
+		}
+		
+		forecastText += 'High: ' + weather.high_f + '&deg;/Low: ' + weather.low_f + '&deg;';
+		forecastText += '\nChance of Rain: ' + weather.chance_of_precipitation + '%';
+		forecastText += '\n\n' + weather.forecast_conditions;
+		
+		html += '<div class="logotemp">';
+		//html += '<div class="logo"><a href="http://wunderground.com"><img class="weatherlogo" width="54px" src="http://jameswilliams.me/misc/wunderground_black.png"/></a></div>';
+		html += '<div class="logo"></div>';
+		html += '<div class="temp_f" title="feels like ' + weather.feelslike_f + '&deg;"><a href="' + weather.forecast_url + '">' + weather.temp_f + '&deg;</a></div>';
+		html += '</div>';
+		html += '<div class="conditions" title="' + forecastText + '"><a href="' + weather.forecast_url + '">' + weather.conditions + '</a></div>';
+		//html += '<div class="station" title="' + weather.station_name + '">' + weather.updated + ' - ' + weather.station + '</div>';
+		html += '<div class="station" title="' + weather.station_name + ' &mdash; Data provided by ' + weather.provided_by + '"><a href="' + weather.station_url + '">' + weather.updated + '</a></div>';
+		weatherWidget.html(html);
+		
+		html = '<a href="' + weather.forecast_url + '">';
+		html += '<div class="textwrapper">';
+		html += '<div class="temp_f">' + weather.temp_f + '&deg;</div>';
+		html += '<div class="conditions">' + weather.conditions + '</div>';
+		html += '<div class="station" title="Data provided by ' + weather.provided_by + '">' + weather.updated + '</div>';
+		html += '</div>';
+		html += '<div class="logo"></div>';
+		html += '</a>';
+		phoneWeatherWidget.html(html);
+		
+		doTick();
+	};
+	
+	weatherAjaxFailure = function() { 
+		weatherWidget.html('<div style="text-align:right">Could not download<br/>weather data</div>');
+	};
+	
+	links['fever'] = 'http://jameswilliams.me/fever';
+	//links['interesting links'] = 'https://pinboard.in/u:willia4/unread/';
+	links['interesting links'] = 'http://jameswilliams.me/unread/';
+	links['reddit'] = 'http://www.reddit.com/';
+	links['programming on reddit'] = 'http://www.reddit.com/r/programming/';
+	links['coding on reddit'] = 'http://www.reddit.com/r/coding/';
+	links['games on reddit'] = 'http://www.reddit.com/r/games/';
+	links['books on reddit'] = 'http://www.reddit.com/r/books/';
+	links['politics on reddit'] = 'http://www.reddit.com/r/politics/';
+	links['kindle on reddit'] = 'http://www.reddit.com/r/kindle/';
+//	links['rpgs on reddit'] = 'http://www.reddit.com/r/rpg';
+  	links['jrpgs on reddit'] = 'http://www.reddit.com/r/jrpg';
+	links['Daring Fireball'] = 'http://daringfireball.net/';
+//	links['MobileRead Forums'] = 'http://www.mobileread.com/forums/';
+	links['Hacker News'] = 'http://news.ycombinator.com/';
+	links['Goodreads'] = 'http://www.goodreads.com/';
+	links['Facebook'] = 'http://www.facebook.com/home.php';
+	links['sdmb'] = 'http://boards.straightdope.com/sdmb/index.php';
+	links['@willia4 on Favstar'] = 'http://favstar.fm/users/willia4/recent';
+	links['Chess'] = 'http://www.chess.com/echess/myhome.html';
+	links['Simplenote'] = 'https://simple-note.appspot.com/';
+	
+	for(var l in links) {
+		if (links.hasOwnProperty(l)) {
+			//for phones, make the entire div the link so you can fat-finger it like a table row.
+			//for other things, keep it traditional.
+		
+			newDiv = jQuery('<div class="link_div"><a href="' + links[l] + '">' + l + '</div></a>');
+			linksDiv.append(newDiv);
+			
+			newDiv = jQuery('<a href="' + links[l] + '"><div class="link_div">' + l + '</div></a>');
+			linksPhone.append(newDiv);
+		}
+	}
+
+	doWeather(true);
+});
+
+</script>
+</head>
+<body>
+<!--
+<div class="header">
+Quick Access
+</div>-->
+
+<div class="weather">
+
+</div> 
+
+<div class="links">
+
+</div>
+
+<div class="links_phone">
+<div class="link_div" id="phone_weather"><img src="http://me.jameswilliams.s3.amazonaws.com/ajax_loader_purple.gif"></div>
+</div>
+</body>
+</html>
