@@ -33,5 +33,13 @@ jobs:
           local: "./site"
           remote: "/volumes/jw_index/site"
           mirror_options: "--exclude-glob=.git*/ --verbose"
+      - name: Update permissions
+        run: |
+          chmod -R a+r /volumes/jw_index/site
+      - name: Restart container
+        run: |
+          docker rm -f jw_index 2> /dev/null 1> /dev/null
+          
+          docker run -d --name jw_index --label 'traefik.http.routers.jw_index.rule=Host(`jameswilliams.me`)' --label 'traefik.enable=true' -v /volumes/jw_index/site:/usr/share/nginx/html:ro nginx:1.21.6-alpine
       
 
