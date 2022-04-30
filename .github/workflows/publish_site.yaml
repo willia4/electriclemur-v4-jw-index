@@ -4,13 +4,12 @@ jobs:
   Publish-Site:
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH Key
+      - name: Install SSH Key And Test Connection
         run: |
           mkdir -p ~/.ssh/
           install -m 600 -D /dev/null ~/.ssh/id
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id
-          ls -l ~/.ssh
-      - name: Install SSH Known Hosts
-        run: |
+          
           ssh-keyscan -H v4.electriclemur.com >> ~/.ssh/known_hosts
-          cat ~/.ssh/known_hosts
+
+          ssh root@v4.electriclemur.com "hostname"
