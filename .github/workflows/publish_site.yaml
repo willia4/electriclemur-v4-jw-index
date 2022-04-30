@@ -1,0 +1,13 @@
+name: Publish Site
+on: [push]
+jobs:
+  Publish-Site:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is from a script echo"
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+      - name: List files
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "Job's done"
