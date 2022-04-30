@@ -12,4 +12,6 @@ jobs:
           
           ssh-keyscan -H v4.electriclemur.com >> ~/.ssh/known_hosts
 
-          ssh root@v4.electriclemur.com -i ~/.ssh/id "hostname"
+          SSH_HOST=$(ssh root@v4.electriclemur.com -i ~/.ssh/id "hostname")
+          test "$SSH_HOST" = "lemur-web01"
+
