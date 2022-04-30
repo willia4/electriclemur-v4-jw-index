@@ -4,10 +4,9 @@ jobs:
   Publish-Site:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This is from a script echo"
-      - name: Checkout repository code
-        uses: actions/checkout@v3
-      - name: List files
+      - name: Install SSH Key
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "Job's done"
+          mkdir -p ~/.ssh/
+          install -m 600 -D /dev/null ~/.ssh/id
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id
+          ls -l ~/.ssh
