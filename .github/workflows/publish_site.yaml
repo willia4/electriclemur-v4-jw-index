@@ -19,6 +19,6 @@ jobs:
       - name: Create site directory
         run: |
           ssh root@v4.electriclemur.com -i ~/.ssh/id "mkdir -p /volumes/jw_index/site"
-          ls ..
+          ls "${{ github.workspace }}"
       
 
