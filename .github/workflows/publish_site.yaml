@@ -45,7 +45,7 @@ jobs:
           ssh root@v4.electriclemur.com -i ~/.ssh/id "docker rm -f jw_index 2> /dev/null 1> /dev/null"
 
           CMD=""
-          CMD+="docker run -d --name jw_index "
+          CMD+="docker run -d --name jw_index --restart=always "
           CMD+="--label 'traefik.enable=true' "
           CMD+="--label 'traefik.http.routers.jw_index.entrypoints=websecure' "
           CMD+="--label 'traefik.http.routers.jw_index.rule=Host(\`jameswilliams.me\`)' "
