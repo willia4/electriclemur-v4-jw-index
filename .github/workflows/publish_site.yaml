@@ -1,8 +1,5 @@
 name: Publish Site
 on:
-  push:
-    branches:
-      - 'main'
   workflow_dispatch:
 jobs:
   Publish-Site:
